@@ -2,6 +2,7 @@ from save_wrong_backup import save_wrong_note_backup
 
 import pandas as pd
 import random
+import subprocess
 
 EXCEL_FILE = '리눅스 기초 디비.xlsx'
 SHEET_NAME = 'vieditor'
@@ -126,6 +127,17 @@ def main():
             print_score(score, total)
             print_wrong_note(wrong_note)
             save_wrong_note_backup(wrong_note)  # ✅ 오답 백업 저장
+            ## 변경
+            # ✅ Git 자동 푸시
+            try:
+                subprocess.run(["git", "add", "오답_백업.xlsx"], check=True)
+                subprocess.run(["git", "commit", "-m", "Update wrong answer backup"], check=True)
+                subprocess.run(["git", "push"], check=True)
+                print("🚀 오답 파일이 Git에 푸시되었습니다.")
+            except subprocess.CalledProcessError:
+                print("❌ Git 푸시에 실패했습니다. 수동으로 확인하세요.")
+            ## 변경
+            
             print("👋 퀴즈를 종료합니다.")
             break
         else:
