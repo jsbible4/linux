@@ -26,7 +26,6 @@
 # save_wrong_backup.py
 import pandas as pd
 import os
-from datetime import datetime
 
 def save_wrong_note_backup(wrong_note, filename="오답_백업.xlsx"):
     if not wrong_note:
@@ -34,19 +33,20 @@ def save_wrong_note_backup(wrong_note, filename="오답_백업.xlsx"):
         return
 
     new_df = pd.DataFrame(wrong_note)
-    new_df.columns = ["문제", "내 답", "정답"]  # 열 순서 맞추기
+    new_df = new_df[["문제", "내 답", "정답"]]  # 순서 정리
 
-    # 기존 파일이 있으면 기존 데이터 불러오기
     if os.path.exists(filename):
         try:
-            old_df = pd.read_excel(filename, sheet_name=0)  # 첫 번째 시트 불러옴
+            old_df = pd.read_excel(filename)
+            if "번호" in old_df.columns:
+                old_df = old_df.drop(columns=["번호"])  # ✅ 기존 번호 열 제거
             combined_df = pd.concat([old_df, new_df], ignore_index=True)
         except:
             combined_df = new_df
     else:
         combined_df = new_df
 
-    combined_df.insert(0, "번호", range(1, len(combined_df) + 1))  # 번호 추가
+    combined_df.insert(0, "번호", range(1, len(combined_df) + 1))
 
     try:
         with pd.ExcelWriter(filename, engine='openpyxl') as writer:
