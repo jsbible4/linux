@@ -2,24 +2,13 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
-  <title>Welcome to Linux Quiz Portal</title>
-  <link rel="stylesheet" href="style.css">
+  <title>Linux Quiz</title>
 </head>
 <body>
-  <div class="container">
     <h1>🎉 퀴즈 포털에 오신 걸 환영합니다!</h1>
     <p>이 사이트는 Nginx 컨테이너에서 제공됩니다.</p>
-    <button onclick="loadQuiz()">퀴즈 시작</button>
-  </div>
 
-  <!-- 모달 영역 -->
-  <div id="quiz-modal" class="modal">
-    <div class="modal-content">
-      <span class="close" onclick="closeModal()">&times;</span>
-      <h2>📝 퀴즈</h2>
-      <div id="quiz-box"></div>
-    </div>
-  </div>
+    <div id="quiz-box"></div>
 
   <script>
     function loadQuiz() {
@@ -29,39 +18,39 @@
           return response.json();
         })
         .then(data => {
-          const modal = document.getElementById("quiz-modal");
           const box = document.getElementById("quiz-box");
           box.innerHTML = "";
           data.forEach((q, index) => {
-            const div = document.createElement("div");
-            div.className = "question-block";
-            div.innerHTML = `
-              <h3>Q${index + 1}. ${q.question}</h3>
-              <p><strong>정답:</strong> ${q.answer}</p>
+            const questionDiv = document.createElement("div");
+            
+		// 보기 출력
+            let choicesHtml = "<ul>";
+            for (const [label, value] of Object.entries(q.choices)) {
+              choicesHtml += `<li>${label}: ${value}</li>`;
+            }
+            choicesHtml += "</ul>";
+
+		  // HTML 구성
+            questionDiv.innerHTML = `
+              <p><strong>${q.question_num}</strong></p>
+              ${choicesHtml}
+              <details>
+                <summary>정답 보기</summary>
+                <p>${q.answer}</p>
+              </details>
+              <hr>
             `;
-            box.appendChild(div);
+
+            box.appendChild(questionDiv);
           });
-          modal.style.display = "block";
         })
         .catch(err => {
           alert(err.message);
         });
     }
 
-    function closeModal() {
-      document.getElementById("quiz-modal").style.display = "none";
-    }
-
-    // ESC 키로 모달 닫기
-    window.addEventListener("keydown", (e) => {
-      if (e.key === "Escape") closeModal();
-    });
-
-    // 모달 외부 클릭 시 닫기
-    window.onclick = function(event) {
-      const modal = document.getElementById("quiz-modal");
-      if (event.target == modal) modal.style.display = "none";
-    }
+     // 자동 실행 추가
+    window.onload = loadQuiz;
   </script>
 </body>
 </html>
