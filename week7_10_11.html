@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>7,10,11주차: Docker 활용, Docker 명령어 다루기, Docker 환경에서 웹서버 구축</title>
+</head>
+<body>
+    <h1>리눅스 퀴즈</h1>
+    <h2>7,10,11주차: Docker 활용, Docker 명령어 다루기, Docker 환경에서 웹서버 구축</h2>
+
+    {% for q in questions %}
+    <div style="margin-bottom: 20px;">
+        <p><strong>Q{{ q.index }}:</strong> {{ q.question }}</p>
+        <ul>
+            {% for choice in q.choices %}
+            <li>선지 {{ loop.index }}: {{ choice }}</li>
+            {% endfor %}
+        </ul>
+        <details>
+            <summary>정답을 확인하세요!</summary>
+            <p><strong>정답:</strong> {{ q.answer }}</p>
+        </details>
+    </div>
+    {% endfor %}
+</body>
+</html>
+
