@@ -3,7 +3,7 @@ FROM python:3.10-slim
 WORKDIR /app
 
 COPY quiz.py .
-
+COPY templates/ ./templates/ 
 RUN pip install flask pymysql
 
 RUN pip install flask-cors 
