@@ -30,14 +30,15 @@ def format_questions(raw_questions):
     sampled = random.sample(raw_questions, min(15, len(raw_questions)))
     formatted = []
     for i, (q, a) in enumerate(sampled, 1):
-        choices = random.sample(
-            [a] + [x[1] for x in raw_questions if x[1] != a][:3],
-            k=min(4, len(raw_questions))
-        )
+        pool = [x[1] for x in raw_questions if x[1] != a]
+        random.shuffle(pool)
+        options = random.sample(pool, k=min(3, len(pool))) + [a]
+        random.shuffle(options)
+        
         formatted.append({
             'index': i,
             'question': q,
-            'choices': choices,
+            'choices': options,
             'answer': a
         })
     return formatted
