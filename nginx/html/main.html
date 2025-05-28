@@ -3,19 +3,69 @@
 <head>
     <meta charset="UTF-8">      <!-- 문자 인코딩을 UTF-8로 설정. -->
     <title>리눅스 퀴즈</title>   <!-- 웹페이지의 제목 설정. -->
+	<style>
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background: #f6f8fa;
+            color: #222;
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            margin-top: 48px;
+            text-align: center;
+            color: #23395d;
+            font-size: 2.5rem;
+        }
+        p {
+            text-align: center;
+            margin-bottom: 32px;
+            color: #555;
+        }
+        .button-container {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 36px 16px 0 16px;
+        }
+        .quiz-btn {
+            padding: 18px 0;
+            background: #4f8cff;
+            color: #fff;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border: none;
+            border-radius: 14px;
+            box-shadow: 0 2px 8px rgba(80,110,180,0.06);
+            cursor: pointer;
+            transition: background 0.2s, transform 0.15s;
+        }
+        .quiz-btn:hover {
+            background: #3066d1;
+            transform: translateY(-2px) scale(1.03);
+        }
+        @media (max-width: 500px) {
+            .button-container {
+                max-width: 96vw;
+            }
+            h1 { font-size: 2rem; }
+        }
+    </style>
 </head>
 <body>
     <h1>리눅스 퀴즈</h1>       <!-- 페이지의 큰 제목 -->
     <p>원하시는 주제를 선택하세요. 선택하시면 랜덤 퀴즈 15개를 공부하실 수 있습니다.</p>
     <!-- 주제별 링크 목록 -->
-    <div> <!-- 각각 Flask 서버의 카테고리 URL로 연결됨. (새 창으로 열림) ex) @app.route('/Basic') -->
-        <a href="http://localhost:5001/Basic" target="_blank">Basic</a><br>
-        <a href="http://localhost:5001/FilesystemLinkNetwork" target="_blank">Filesystem, Link, Network</a><br>
-        <a href="http://localhost:5001/Process" target="_blank">Process</a><br>
-        <a href="http://localhost:5001/Firewall" target="_blank">Firewall</a><br>
-        <a href="http://localhost:5001/SchedulingInoutputVieditor" target="_blank">Scheduling, Inoutput, vi Editor</a><br>
-	<a href="http://localhost:5001/apache2MariaDBPHP" target="_blank">apache2, MariaDB, php</a><br>
-	<a href="http://localhost:5001/Docker" target="_blank">Docker</a><br>
+    <div class="button-container"> <!-- 각각 Flask 서버의 카테고리 URL로 연결됨. (새 창으로 열림) ex) @app.route('/Basic') -->
+        <button class="quiz-btn" onclick="window.open('http://localhost:5001/Basic', '_blank')">Basic</button>
+        <button class="quiz-btn" onclick="window.open('http://localhost:5001/FilesystemLinkNetwork', '_blank')">Filesystem, Link, Network</button>
+        <button class="quiz-btn" onclick="window.open('http://localhost:5001/Process', '_blank')">Process</button>
+        <button class="quiz-btn" onclick="window.open('http://localhost:5001/Firewall', '_blank')">Firewall</button>
+        <button class="quiz-btn" onclick="window.open('http://localhost:5001/SchedulingInoutputVieditor', '_blank')">Scheduling, Inoutput, vi Editor</button>
+        <button class="quiz-btn" onclick="window.open('http://localhost:5001/apache2MariaDBPHP', '_blank')">apache2, MariaDB, php</button>
+        <button class="quiz-btn" onclick="window.open('http://localhost:5001/Docker', '_blank')">Docker</button>
     </div>
 </body>
 </html>
