@@ -1,14 +1,14 @@
-<!DOCTYPE html>
-<html lang="ko">
+<!DOCTYPE html>  <!-- HTML5 문서임을 선언. -->
+<html lang="ko">  <!-- 문서의 기본 언어를 한국어로 설정. -->
 <head>
-    <meta charset="UTF-8">
-    <title>리눅스 퀴즈</title>
+    <meta charset="UTF-8">      <!-- 문자 인코딩을 UTF-8로 설정. -->
+    <title>리눅스 퀴즈</title>   <!-- 웹페이지의 제목 설정. -->
 </head>
 <body>
-    <h1>리눅스 퀴즈</h1>
+    <h1>리눅스 퀴즈</h1>       <!-- 페이지의 큰 제목 -->
     <p>원하시는 주제를 선택하세요. 선택하시면 랜덤 퀴즈 15개를 공부하실 수 있습니다.</p>
-
-    <div> <!-- 각각 Flask 서버의 카테고리 URL로 연결됨 (새 창으로 열림) ex) @app.route('/Basic') -->
+    <!-- 주제별 링크 목록 -->
+    <div> <!-- 각각 Flask 서버의 카테고리 URL로 연결됨. (새 창으로 열림) ex) @app.route('/Basic') -->
         <a href="http://localhost:5001/Basic" target="_blank">Basic</a><br>
         <a href="http://localhost:5001/FilesystemLinkNetwork" target="_blank">Filesystem, Link, Network</a><br>
         <a href="http://localhost:5001/Process" target="_blank">Process</a><br>
