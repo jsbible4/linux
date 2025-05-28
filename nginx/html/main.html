@@ -4,24 +4,28 @@
     <meta charset="UTF-8">      <!-- 문자 인코딩을 UTF-8로 설정. -->
     <title>리눅스 퀴즈</title>   <!-- 웹페이지의 제목 설정. -->
 	<style>
-        body {
+	/*바탕 페이지 디자인*/
+        body { 
             font-family: 'Noto Sans KR', sans-serif;
             background: #f6f8fa;
             color: #222;
             margin: 0;
             padding: 0;
         }
+	/*페이지 상단 제목 "리눅스 퀴즈"*/
         h1 {
             margin-top: 48px;
             text-align: center;
             color: #23395d;
             font-size: 2.5rem;
         }
+	/*제목 밑의 퀴즈 페이지 사용 설명*/
         p {
             text-align: center;
             margin-bottom: 32px;
             color: #555;
         }
+	/*주제 선택하는 버튼 컨테이너*/
         .button-container {
             display: flex;
             flex-direction: column;
@@ -30,6 +34,7 @@
             margin: 0 auto;
             padding: 36px 16px 0 16px;
         }
+	/*주제 선택 버튼 디자인*/
         .quiz-btn {
             padding: 18px 0;
             background: #4f8cff;
@@ -42,15 +47,17 @@
             cursor: pointer;
             transition: background 0.2s, transform 0.15s;
         }
+	/*버튼에 마우스 올렸을 때 더 진하게*/
         .quiz-btn:hover {
             background: #3066d1;
             transform: translateY(-2px) scale(1.03);
         }
+	/*출력 화면에 따른 반응형 디자인*/
         @media (max-width: 500px) {
-            .button-container {
+            .button-container { /*버튼 감싼 컨테이너 너비를 화면의 96%로 제한*/
                 max-width: 96vw;
             }
-            h1 { font-size: 2rem; }
+            h1 { font-size: 2rem; }/*상단 제목 글씨 조*/
         }
     </style>
 </head>
