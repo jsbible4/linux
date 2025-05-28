@@ -65,13 +65,20 @@ def format_questions(raw_questions):
         })
     return formatted            # 포맷 완료된 퀴즈 리스트 반환
 
-# 각 카테고리별 라우터 (HTML 템플릿 렌더링)
+
+# ------------------------------------
+# 아래는 각각의 카테고리(라우트) 정의
+# 사용자가 URL로 접근 시 HTML 템플릿을 보여줌
+# ------------------------------------
+
+
 @app.route('/Basic')
 def Basic_quiz():
-    categories = ['Basic']
-    data = get_multiple_quiz_data(categories)
-    questions = format_questions(data)
-    return render_template('Basic.html', questions=questions)
+    categories = ['Basic']   # 카테고리 리스트
+    data = get_multiple_quiz_data(categories)  # DB에서 문제 조회
+    questions = format_questions(data)      # 보기 포함 포맷 적용
+    return render_template('Basic.html', questions=questions)   
+    # Flask/templates/Basic.html 템플릿에 전달
 
 @app.route('/FilesystemLinkNetwork')
 def FilesystemLinkNetwork_quiz():
@@ -116,7 +123,11 @@ def Docker_quiz():
     return render_template('Docker.html', questions=questions)
 
 
-# Flask 내부 포트 5000번으로 서버 실행
+# ------------------------------------
+# 앱을 0.0.0.0 IP(모든인터페이스)와 포트 5000에서 실행 (도커 외부에서도 접근 가능하게)
+# 컨테이너 내부에서 Flask는 5000번 포트에서 동작
+# ------------------------------------
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
 
